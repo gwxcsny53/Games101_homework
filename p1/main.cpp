@@ -16,6 +16,8 @@ Eigen::Matrix4f get_view_matrix(Eigen::Vector3f eye_pos)
 
     view = translate * view;
 
+    //test
+
     return view;
 }
 
