@@ -77,7 +77,7 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
         0, 0, 2 / deep, 0,
         0, 0, 0, 1;
 
-    projection = M_scale * M_translate * M_persp_ortho;
+    projection = M_scale * M_persp_ortho;
 
     return projection;
 }
