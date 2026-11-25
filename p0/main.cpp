@@ -1,9 +1,10 @@
-#include<cmath>
-#include<eigen3/Eigen/Core>
-#include<eigen3/Eigen/Dense>
-#include<iostream>
+#include <cmath>
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Dense>
+#include <iostream>
 
-int main(){
+int main()
+{
 
     // float a=1.0,b=2.0;
     // std::cout<< a <<std::endl;
@@ -15,7 +16,7 @@ int main(){
     // Example of vector
     // std::cout << "Example of vector \n";
     // // vector definition
-    Eigen::Vector3f v(1.0f,2.0f,3.0f);
+    Eigen::Vector3f v(1.0f, 2.0f, 3.0f);
     // Eigen::Vector3f w(1.0f,0.0f,0.0f);
     // // vector output
     // // std::cout << "Example of output \n";
@@ -30,23 +31,24 @@ int main(){
     // std::cout << "Example of dot multiply \n";
     // std::cout << EIGEN_DOT_H(v,w) << std::endl;
 
-
     // Example of matrix
     std::cout << "Example of matrix \n";
     // matrix definition
-    Eigen::Matrix3f i,j;
-    i << 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0;
-    j << 9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0;
+    Eigen::Matrix3f i, j;
+    i << 1.0, 2.0, 3.0,
+        4.0, 5.0, 6.0,
+        7.0, 8.0, 9.0;
+    j << 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0;
     // matrix output
     std::cout << "Example of output \n";
     std::cout << i << std::endl;
     // matrix add
     std::cout << "Example of add \n";
-    std::cout << i+j << std::endl;
+    std::cout << i + j << std::endl;
     // matrix scalar multiply
     std::cout << "Example of scalar multiply \n";
     std::cout << i * 2.0 << std::endl;
-    // matrix multiply 
+    // matrix multiply
     std::cout << "Example of matrix multiple \n";
     std::cout << i * j << std::endl;
     // matrix vector multiply
