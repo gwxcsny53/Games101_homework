@@ -54,32 +54,37 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     // Create the projection matrix for the given parameters.
     // Then return it.
 
-    float A = zNear + zFar;
-    float B = -zFar * zFar;
+    float n = -zNear;
+    float f = -zFar;
 
     float height = tan(eye_fov / 2.0 / 180.0 * acos(-1)) * zNear * 2;
     float width = aspect_ratio * height;
     float deep = zFar - zNear;
 
-    Eigen::Matrix4f M_persp_ortho, M_scale, M_translate;
-    M_persp_ortho << zNear, 0, 0, 0,
-        0, zNear, 0, 0,
-        0, 0, A, B,
+    Eigen::Matrix4f M_persp_ortho;
+    M_persp_ortho << n, 0, 0, 0,
+        0, n, 0, 0,
+        0, 0, n + f, -n * f,
         0, 0, 1, 0;
 
-    M_translate << 1, 0, 0, -width / 2,
-        0, 1, 0, -height / 2,
-        0, 0, 1, -deep / 2,
-        0, 0, 0, 1;
+    Eigen::Matrix4f M_translate = Eigen::Matrix4f::Identity();
+    M_translate(2, 3) = -(n + f) / 2.0f;
 
-    M_scale << 2 / width, 0, 0, 0,
-        0, 2 / height, 0, 0,
-        0, 0, 2 / deep, 0,
-        0, 0, 0, 1;
+    Eigen::Matrix4f M_scale = Eigen::Matrix4f::Identity();
+    M_scale(0, 0) = 2.0f / width;
+    M_scale(1, 1) = 2.0f / height;
+    M_scale(2, 2) = 2.0f / deep;
 
-    projection = M_scale * M_persp_ortho;
+    projection = M_scale * M_translate * M_persp_ortho;
 
     return projection;
+}
+
+Eigen::Matrix4f get_rotation(Vector3f axis, float angle)
+{
+    Eigen::Matrix4f rotation = Eigen::Matrix4f::Identity();
+
+    return rotation;
 }
 
 int main(int argc, const char **argv)
